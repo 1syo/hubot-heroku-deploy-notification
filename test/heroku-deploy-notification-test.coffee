@@ -18,12 +18,14 @@ describe 'hubot-deploy-notification', ->
 
   it 'should be valid', (done) ->
     params =
-      app: "the app name"
+      app: "cryptic-earth-3489"
       user: "test@example.com"
-      url: "http://myapp.heroku.com"
-      head: "9fc04edee178f29b14f20d560176bc4da92fea5d"
-      head_long: "full identifier of the latest commit"
-      git_log: "log of commits between this deploy and the last"
+      url: "http://cryptic-earth-3489.herokuapp.com"
+      head_long: "8657a6f9dbc90aaf61763c741b2296febe2f3ebe"
+      head: "8657a6f"
+      release: "v3"
+      git_log: ""
+      prev_head: ""
 
     request(robot.router)
       .post('/hubot/heroku/general')

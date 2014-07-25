@@ -8,12 +8,14 @@ Postman = require '../src/postman'
 describe 'Postman', ->
   beforeEach ->
     @params =
-      app: "the app name"
+      app: "cryptic-earth-3489"
       user: "test@example.com"
-      url: "http://myapp.heroku.com"
-      head: "9fc04edee178f29b14f20d560176bc4da92fea5d"
-      head_long: "full identifier of the latest commit"
-      git_log: "log of commits between this deploy and the last"
+      url: "http://cryptic-earth-3489.herokuapp.com"
+      head_long: "8657a6f9dbc90aaf61763c741b2296febe2f3ebe"
+      head: "8657a6f"
+      release: "v3"
+      git_log: ""
+      prev_head: ""
 
     @req =
       body: @params
@@ -38,12 +40,16 @@ describe 'Postman', ->
       expect(@postman.user()).to.eq @params.user
 
     it '#head', ->
-      expect(@postman.head()).to.eq "9fc04ed"
+      expect(@postman.head()).to.eq @params.head
+
+    it '#release', ->
+      expect(@postman.release()).to.eq @params.release
+
 
     it '#message', ->
       expect(@postman.message()).to.eq """
-        [Heroku] test@example.com deployed a new version of the app name (9fc04ed)
-        http://myapp.heroku.com
+        [Heroku] test@example.com deployed v3 of cryptic-earth-3489 (8657a6f)
+        http://cryptic-earth-3489.herokuapp.com
         """
 
     it "#deliver", ->

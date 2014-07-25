@@ -19,13 +19,16 @@ class Base
     @body.url
 
   head: ->
-    @body.head.substr(0, 7)
+    @body.head
+
+  release: ->
+    @body.release
 
 
 class Common extends Base
   message: ->
     """
-    [Heroku] #{@user()} deployed a new version of #{@app()} (#{@head()})
+    [Heroku] #{@user()} deployed #{@release()} of #{@app()} (#{@head()})
     #{@url()}
     """
 
@@ -34,7 +37,7 @@ class Common extends Base
 
 class Slack extends Base
   message: ->
-    "[Heroku] #{@user()} deployed a new version of #{@url()}|#{@app()} (#{@head()})"
+    "[Heroku] #{@user()} deployed #{@release()} of #{@url()}|#{@app()} (#{@head()})"
 
   payload: ->
     message:
