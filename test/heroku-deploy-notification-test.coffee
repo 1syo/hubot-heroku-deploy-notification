@@ -19,9 +19,9 @@ describe 'hubot-deploy-notification', ->
   it 'should be valid', (done) ->
     params =
       app: "the app name"
-      user: "email of the user deploying the app"
+      user: "test@example.com"
       url: "http://myapp.heroku.com"
-      head: "short identifier of the latest commit"
+      head: "9fc04edee178f29b14f20d560176bc4da92fea5d"
       head_long: "full identifier of the latest commit"
       git_log: "log of commits between this deploy and the last"
 
