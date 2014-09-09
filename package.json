@@ -1,23 +1,23 @@
 {
-  "name": "hubot-heroku-deploy-notification",
-  "description": "A hubot script that does the things",
-  "version": "0.0.0",
+  "name": "hubot-heroku-deploy-notifier",
+  "description": "A hubot script that notify deploy status from heroku deploy hooks",
+  "version": "1.0.0",
   "author": "TAKAHASHI Kazunari <takahashi@1syo.net>",
   "license": "MIT",
 
-  "keywords": ["hubot","hubot-scripts"],
+  "keywords": ["hubot","hubot-scripts", "heroku"],
 
   "repository": {
     "type": "git",
-    "url": "git://github.com/1syo/hubot-heroku-deploy-notification.git"
+    "url": "git://github.com/1syo/hubot-heroku-deploy-notifier.git"
   },
 
   "bugs": {
-    "url": "https://github.com/1syo/hubot-heroku-deploy-notification/issues"
+    "url": "https://github.com/1syo/hubot-heroku-deploy-notifier/issues"
   },
 
   "dependencies": {
-    "coffee-script": "~1.7"
+    "coffee-script": ">= 1.6"
   },
 
   "devDependencies": {

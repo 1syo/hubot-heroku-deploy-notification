@@ -46,16 +46,15 @@ describe 'Postman', ->
       expect(@postman.release()).to.eq @params.release
 
 
-    it '#message', ->
-      expect(@postman.message()).to.eq """
-        [Heroku] test@example.com deployed v3 of cryptic-earth-3489 (8657a6f)
-        http://cryptic-earth-3489.herokuapp.com
+    it '#notice', ->
+      expect(@postman.notice()).to.eq """
+        [Heroku] test@example.com deployed v3 (8657a6f) of cryptic-earth-3489 (http://cryptic-earth-3489.herokuapp.com)
         """
 
-    it "#deliver", ->
-      @postman.deliver()
+    it "#notify", ->
+      @postman.notify()
       expect(@robot.send).to.have.been.calledWith(
-        {room: @postman.room()}, @postman.message()
+        {room: @postman.room()}, @postman.notice()
       )
 
   describe 'Slack', ->
@@ -67,11 +66,12 @@ describe 'Postman', ->
       @postman = Postman.create(@req, @robot)
 
     it "#payload", ->
-      expect(@postman.payload().message["room"]).to.eq "general"
-      expect(@postman.payload().content["pretext"]).to.eq @postman.message()
+      expect(@postman.payload().message.room).to.eq "general"
+      expect(@postman.payload().content.pretext).to.eq @postman.pretext()
+      expect(@postman.payload().content.fallback).to.eq @postman.notice()
 
-    it "#deliver", ->
-      @postman.deliver()
+    it "#notify", ->
+      @postman.notify()
       expect(@robot.emit).to.have.been.calledWith(
         'slack-attachment', @postman.payload()
       )
