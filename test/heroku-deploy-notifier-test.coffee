@@ -6,12 +6,12 @@ chai.use require 'sinon-chai'
 expect = chai.expect
 request = require 'supertest'
 
-describe 'hubot-deploy-notification', ->
+describe 'hubot-deploy-notifier', ->
   robot = null
   beforeEach (done) ->
     robot = new Robot null, 'mock-adapter', yes, 'hubot'
     robot.adapter.on 'connected', ->
-      require("../src/heroku-deploy-notification")(robot)
+      require("../src/heroku-deploy-notifier")(robot)
       adapter = @robot.adapter
       done()
     robot.run()

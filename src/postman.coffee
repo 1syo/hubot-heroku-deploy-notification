@@ -1,13 +1,12 @@
 # Description
-#   A hubot script that does the things
+#   Postman build notice from json.
 #
 class Base
-  constructor: (req, @robot) ->
-    @_room = req.params.room
+  constructor: (@req, @robot) ->
     @body = req.body
 
   room: ->
-    @_room
+    @req.params.room || ""
 
   app: ->
     @body.app
@@ -24,20 +23,18 @@ class Base
   release: ->
     @body.release
 
+  notice: ->
+    "[Heroku] #{@user()} deployed #{@release()} (#{@head()}) of #{@app()} (#{@url()})"
+
 
 class Common extends Base
-  message: ->
-    """
-    [Heroku] #{@user()} deployed #{@release()} of #{@app()} (#{@head()})
-    #{@url()}
-    """
+  notify: ->
+    @robot.send {room: @room()}, @notice()
 
-  deliver: ->
-    @robot.send {room: @room()}, @message()
 
 class Slack extends Base
-  message: ->
-    "[Heroku] #{@user()} deployed #{@release()} of #{@url()}|#{@app()} (#{@head()})"
+  pretext: ->
+    "[Heroku] #{@user()} deployed #{@release()} (#{@head()}) of #{@url()}|#{@app()}"
 
   payload: ->
     message:
@@ -45,10 +42,10 @@ class Slack extends Base
     content:
       text: ""
       color: "#244062"
-      fallback: ""
-      pretext: @message()
+      fallback: @notice()
+      pretext: @pretext()
 
-  deliver: ->
+  notify: ->
     @robot.emit 'slack-attachment', @payload()
 
 
