@@ -11,7 +11,7 @@ See [`src/heroku-deploy-notifier.coffee`](src/heroku-deploy-notifier.coffee) for
 
 In hubot project repo, run:
 
-`npm install hubot-heroku-deploy-notifier --save`
+`npm install git@github.com:1syo/hubot-heroku-deploy-notifier.git --save`
 
 Then add **hubot-heroku-deploy-notifier** to your `external-scripts.json`:
 
@@ -20,6 +20,13 @@ Then add **hubot-heroku-deploy-notifier** to your `external-scripts.json`:
 ```
 
 ## Heroku configuration
+
+Add heroku addons to your application with url options.
+
+```
+heroku addons:add deployhooks:http \
+    --url=<hubot url>:<hubot port>/<hubot name>/heroku/<room>
+```
 
 See also:  
 https://devcenter.heroku.com/articles/deploy-hooks#http-post-hook
