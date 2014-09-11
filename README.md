@@ -37,12 +37,12 @@ If you use slack adapter then your notice use Slack attachments.
 
 ### Slack Adapter
 
-...
+![](https://raw.githubusercontent.com/wiki/1syo/hubot-heroku-deploy-notifier/slack.png)
 
 ### Slack Adapter (fallback)
 
-...
+![](https://raw.githubusercontent.com/wiki/1syo/hubot-heroku-deploy-notifier/slack-fallback.png)
 
 ### Shell Adapter
 
-...
+![](https://raw.githubusercontent.com/wiki/1syo/hubot-heroku-deploy-notifier/shell.png)
