@@ -45,7 +45,6 @@ describe 'Postman', ->
     it '#release', ->
       expect(@postman.release()).to.eq @params.release
 
-
     it '#notice', ->
       expect(@postman.notice()).to.eq """
         [Heroku] test@example.com deployed v3 (8657a6f) of cryptic-earth-3489 (http://cryptic-earth-3489.herokuapp.com)
@@ -67,7 +66,7 @@ describe 'Postman', ->
 
     it "#payload", ->
       expect(@postman.payload().message.room).to.eq "general"
-      expect(@postman.payload().content.pretext).to.eq @postman.pretext()
+      expect(@postman.payload().content.text).to.eq @postman.text()
       expect(@postman.payload().content.fallback).to.eq @postman.notice()
 
     it "#notify", ->
