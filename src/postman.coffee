@@ -33,17 +33,17 @@ class Common extends Base
 
 
 class Slack extends Base
-  pretext: ->
+  text: ->
     "[Heroku] #{@user()} deployed #{@release()} (#{@head()}) of #{@url()}|#{@app()}"
 
   payload: ->
     message:
       room: @room()
     content:
-      text: ""
+      text: @text()
       color: "#244062"
       fallback: @notice()
-      pretext: @pretext()
+      pretext: ""
 
   notify: ->
     @robot.emit 'slack-attachment', @payload()
