@@ -22,13 +22,13 @@ describe 'Postman', ->
       params:
         room: "general"
 
-  describe 'Common', ->
+  describe 'Postman', ->
     beforeEach ->
       @robot =
         adapterName: "shell"
         send: sinon.spy()
 
-      @postman = Postman.create(@req, @robot)
+      @postman = new Postman(@req, @robot)
 
     it '#room', ->
       expect(@postman.room()).to.eq "general"
@@ -54,23 +54,4 @@ describe 'Postman', ->
       @postman.notify()
       expect(@robot.send).to.have.been.calledWith(
         {room: @postman.room()}, @postman.notice()
-      )
-
-  describe 'Slack', ->
-    beforeEach ->
-      @robot =
-        adapterName: "slack"
-        emit: sinon.spy()
-
-      @postman = Postman.create(@req, @robot)
-
-    it "#payload", ->
-      expect(@postman.payload().message.room).to.eq "general"
-      expect(@postman.payload().content.text).to.eq @postman.text()
-      expect(@postman.payload().content.fallback).to.eq @postman.notice()
-
-    it "#notify", ->
-      @postman.notify()
-      expect(@robot.emit).to.have.been.calledWith(
-        'slack-attachment', @postman.payload()
       )

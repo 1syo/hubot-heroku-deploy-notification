@@ -1,9 +1,9 @@
 # Description
 #   Postman build notice from json.
 #
-class Base
+class Postman
   constructor: (@req, @robot) ->
-    @body = req.body
+    @body = @req.body
 
   room: ->
     @req.params.room || ""
@@ -26,35 +26,7 @@ class Base
   notice: ->
     "[Heroku] #{@user()} deployed #{@release()} (#{@head()}) of #{@app()} (#{@url()})"
 
-
-class Common extends Base
   notify: ->
     @robot.send {room: @room()}, @notice()
-
-
-class Slack extends Base
-  text: ->
-    "[Heroku] #{@user()} deployed #{@release()} (#{@head()}) of #{@url()}|#{@app()}"
-
-  payload: ->
-    message:
-      room: @room()
-    content:
-      text: @text()
-      color: "#244062"
-      fallback: @notice()
-      pretext: ""
-
-  notify: ->
-    @robot.emit 'slack-attachment', @payload()
-
-
-class Postman
-  @create: (req, robot) ->
-    if robot.adapterName == 'slack'
-      new Slack(req, robot)
-    else
-      new Common(req, robot)
-
 
 module.exports = Postman
