@@ -30,19 +30,3 @@ heroku addons:add deployhooks:http \
 
 See also:  
 https://devcenter.heroku.com/articles/deploy-hooks#http-post-hook
-
-## Notification examples
-
-If you use slack adapter then your notice use Slack attachments.
-
-### Slack Adapter
-
-![](https://raw.githubusercontent.com/wiki/1syo/hubot-heroku-deploy-notifier/slack.png)
-
-### Slack Adapter (fallback)
-
-![](https://raw.githubusercontent.com/wiki/1syo/hubot-heroku-deploy-notifier/slack-fallback.png)
-
-### Shell Adapter
-
-![](https://raw.githubusercontent.com/wiki/1syo/hubot-heroku-deploy-notifier/shell.png)
