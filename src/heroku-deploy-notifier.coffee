@@ -23,7 +23,7 @@ Postman = require "./postman"
 module.exports = (robot) ->
   robot.router.post "/#{robot.name}/heroku/:room", (req, res) ->
     try
-      postman = Postman.create(req, robot)
+      postman = new Postman(req, robot)
       postman.notify()
       res.end "[Heroku] Sending message"
     catch e
