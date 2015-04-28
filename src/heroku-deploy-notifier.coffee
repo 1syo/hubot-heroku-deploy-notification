@@ -19,12 +19,13 @@
 # Author:
 #   TAKAHASHI Kazunari[takahashi@1syo.net]
 #
-Postman = require "./postman"
+Message = require "./message"
 module.exports = (robot) ->
   robot.router.post "/#{robot.name}/heroku/:room", (req, res) ->
     try
-      postman = new Postman(req, robot)
-      postman.notify()
+      message = new Message(req.body)
+      robot.send { room: req.params.room }, message.build()
+
       res.end "[Heroku] Sending message"
     catch e
       res.end "[Heroku] #{e}"
